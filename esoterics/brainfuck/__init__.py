@@ -6,3 +6,7 @@
 
 def tokenize(code):
     return []
+
+
+class Token(object):
+    pass
