@@ -3,3 +3,6 @@
 
 """Module documentation
 """
+
+def tokenize(code):
+    return []
