@@ -22,6 +22,11 @@ class TestTokenizer(esoterics.tests.test_case.TestCase):
         token = tokens[0]
         self.assertEqual(token.next, 5)
 
+    def test_close_loop_token_contains_positions_of_open_loop_token(self):
+        tokens = esoterics.brainfuck.tokenize('[->+<]')
+        token = tokens[5]
+        self.assertEqual(token.next, 0)
+
 
 if __name__ == '__main__':
     unittest.main()
