@@ -13,5 +13,10 @@ class TestTokenizer(esoterics.tests.test_case.TestCase):
         self.assertIsInstanceOfTokens(tokens)
 
 
+    def test_tokens_contains_position_of_next_token(self):
+        tokens = esoterics.brainfuck.tokenize('[->+<]')
+        token = tokens[1]
+        self.assertEqual(token.next, 2)
+
 if __name__ == '__main__':
     unittest.main()
