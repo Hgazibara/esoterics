@@ -10,7 +10,7 @@ import esoterics.brainfuck
 class TestTokenizer(esoterics.tests.test_case.TestCase):
     def test_tokenize_produces_sequence_of_tokens(self):
         tokens = esoterics.brainfuck.tokenize('[->+<]')
-        self.assertIsSequence(tokens)
+        self.assertIsInstanceOfTokens(tokens)
 
 
 if __name__ == '__main__':
