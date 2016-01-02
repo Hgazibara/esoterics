@@ -15,7 +15,7 @@ def tokenize(code):
 
         if command == ']':
             if not loop_starts:
-                raise TokenizerError(UNMATCHED_LOOP_END_ERROR)
+                raise TokenizerError(UNMATCHED_LOOP_END_ERROR.format(position=position))
             loop_start = loop_starts.pop()
             tokens.append(Token(command, loop_start))
             tokens[loop_start].next = position
