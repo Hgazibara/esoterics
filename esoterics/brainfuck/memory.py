@@ -4,6 +4,8 @@
 
 class Memory(object):
 
+    MAX_SIZE = 30000
+
     def __init__(self):
         self.cells = [Cell()]
 
@@ -41,7 +43,7 @@ class Pointer(object):
         self.position = 0
 
     def up(self):
-        self.position += 1
+        self.position = min(Memory.MAX_SIZE, self.position + 1)
 
     def down(self):
-        self.position -= 1
+        self.position = max(0, self.position - 1)
