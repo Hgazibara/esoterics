@@ -28,6 +28,12 @@ class TestTokenizer(esoterics.tests.test_case.TestCase):
         token = tokens[brainfuck_data.close_loop_position()]
         self.assertEqual(token.next, brainfuck_data.open_loop_position())
 
+    def test_tokenize_reports_unmatched_opening_loop(self):
+        self.assertRaises(esoterics.brainfuck.TokenizerError, lambda: esoterics.brainfuck.tokenize('[->+<'))
+
+    def test_tokenize_raises_unmatched_closing_loop(self):
+        self.assertRaises(esoterics.brainfuck.TokenizerError, lambda: esoterics.brainfuck.tokenize('->+<]'))
+
 
 if __name__ == '__main__':
     unittest.main()
