@@ -8,21 +8,30 @@ class Memory(object):
     MAX_Y = 80
 
     def __init__(self):
-        self.cells = [[Cell()] * self.MAX_Y for _ in xrange(self.MAX_X)]
+        self.cells = [[Cell() for _ in xrange( self.MAX_Y)] for _ in xrange(self.MAX_X)]
 
     def fill(self, code):
         for i, row in enumerate(code):
             for j, cell in enumerate(row):
-                self.cells[i][j] = cell
+                self.cells[i][j].value = cell
 
-    def __getitem__(self, pointer):
-        return self.cells[pointer.x][pointer.y]
+    def __getitem__(self, row):
+        return self.cells[row]
+
+    def __str__(self):
+        return '\n'.join(' '.join(str(cell) for cell in row) for row in self.cells)
 
 
 class Cell(object):
 
     def __init__(self, value=None):
         self.value = value
+
+    def is_empty(self):
+        return self.value is None
+
+    def __str__(self):
+        return str(self.value)
 
 
 class Pointer(object):

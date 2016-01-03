@@ -9,7 +9,7 @@ import esoterics.befunge
 
 def run(code):
     memory = esoterics.befunge.Memory()
-    memory.fill(code)
+    memory.fill(code.split('\n'))
 
     pointer = esoterics.befunge.Pointer()
 
@@ -37,7 +37,7 @@ class Interpreter(object):
         ascii_mode_active = False
 
         while True:
-            cell = self.memory[self.pointer]
+            cell = self.memory[self.pointer.x][self.pointer.y]
             command = cell.value
 
             if cell.is_empty():
@@ -61,7 +61,7 @@ class Interpreter(object):
                     a, b = stack.pop(), stack.pop()
                     try:
                         stack.append(self.binary_operations[command](b, a))
-                    except ZeroDivisionError as e:
+                    except ZeroDivisionError:
                         stack.append(a)
 
                 elif command == '!':
@@ -104,15 +104,15 @@ class Interpreter(object):
                     output.append(chr(stack.pop()))
 
                 elif command == '#':
-                    self.pointer.make_move()
+                    self.pointer.move()
 
                 elif command == 'p':
                     y, x, v = stack.pop(), stack.pop(), stack.pop()
-                    self.memory[y][x] = chr(v)
+                    self.memory[y][x].value = chr(v)
 
                 elif command == 'g':
                     y, x = stack.pop(), stack.pop()
-                    stack.append(ord(self.memory[y][x]))
+                    stack.append(ord(self.memory[y][x].value))
 
                 elif command == '@':
                     return ''.join(output)
