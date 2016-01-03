@@ -11,7 +11,7 @@ A collection of Python interpreters for various esoteric programming languages.
 
 ### Brainfuck
 
-```
+```python
 import esoterics.brainfuck
 import esoterics.input
 
@@ -25,7 +25,7 @@ esoterics.brainfuck.run(code, user_input)
 
 ### Befunge-93
 
-```
+```python
 import esoterics.befunge
 
 code = '01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@'
