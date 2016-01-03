@@ -8,12 +8,21 @@ class Memory(object):
     MAX_Y = 80
 
     def __init__(self):
-        self.cells = [[None] * self.MAX_Y for _ in xrange(self.MAX_X)]
+        self.cells = [[Cell()] * self.MAX_Y for _ in xrange(self.MAX_X)]
 
     def fill(self, code):
         for i, row in enumerate(code):
             for j, cell in enumerate(row):
                 self.cells[i][j] = cell
+
+    def __getitem__(self, pointer):
+        return self.cells[pointer.x][pointer.y]
+
+
+class Cell(object):
+
+    def __init__(self, value=None):
+        self.value = value
 
 
 class Pointer(object):
